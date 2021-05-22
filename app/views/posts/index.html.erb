@@ -1,13 +1,14 @@
+<% @posts.each do |post| %>
 <div class="card">
+    <div class="card-header">
+        <%= post.title%>
+    </div>
     <div class="card-body">
-        <% @posts.each do |post| %>
-            <h5 class="card-title"><%= post.title%></h5>
-            <p class="card-text"><%= post.body%></p>
-            <%= link_to 'Show', post_path(post), :class => 'btn btn-outline-primary'%>
-        <% end %>
+        <p class="card-text"><%= post.body%></p>
+        <%= link_to 'Show', post_path(post), :class => 'btn btn-primary'%>
     </div>
 </div>  
 <br>
-
+<% end %>
 
 
