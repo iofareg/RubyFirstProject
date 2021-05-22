@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
+    before_action :authenticate_user!, only: %i[ new create edit update destroy ]
     def index
-        @post = Post.all
+        @posts = Post.all
     end
     def new
         @post = Post.new

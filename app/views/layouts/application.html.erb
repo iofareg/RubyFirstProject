@@ -14,14 +14,28 @@
   <body>
     <div class="d-flex flex-column flex-md-row align-items-center bg-white border-bottom shadow-sm p-2">
       <nav class="ml-2 mr-md-auto">
+        <% if user_signed_in? %>
+          <span class="p-2 text-dark text-decoration-none"><%= current_user.email %></span>
+          <span class="p-2 text-dark text-decoration-none">
+            <%= link_to 'Log out', destroy_user_session_path, method: :delete %>
+          </span>
+        <% else %>
+          <span class="p-2 text-dark text-decoration-none">
+            <%= link_to 'Log in', new_user_session_path %>
+          </span>
+        <% end %>
         <span class="p-2 text-dark text-decoration-none"><%= link_to "Main page", home_path %></span>
         <span class="p-2 text-dark text-decoration-none"><%= link_to "Add post", new_post_path %></span>
         <span class="p-2 text-dark text-decoration-none"><%= link_to "About", about_path %></span>
       </nav>
       <h5 class="my-md-0  font-weight-bold">RubyBlog</h5>
     </div>
-    <div class="container">
-      <%= yield %>
+    <div class="container-md" style="margin-top: 1em">
+      <div style="margin-left:auto; margin-right:auto; width: 50%">
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
+        <%= yield %>
+      </div>
     </div>
   </body>
 </html>
