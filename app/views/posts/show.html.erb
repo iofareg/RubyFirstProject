@@ -4,7 +4,7 @@
 <h2>Comments</h2>
 <% @post.comments.each do |comment| %>
     <div>
-        <p><strong><%= comment.username %></strong>: <%= comment.body %>
+        <p><strong><%= comment.author.username %></strong>: <%= comment.body %>
         <%= link_to 'x', [comment.post, comment],
               method: :delete
               #data: { confirm: "Delete this comment?" } 
