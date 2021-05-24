@@ -27,6 +27,8 @@ class PostsController < ApplicationController
     def create
         @post = Post.new(post_params)
         
+        @post.author = current_user
+
         if(@post.save)
             redirect_to @post
         else
@@ -39,6 +41,7 @@ class PostsController < ApplicationController
         @post.destroy
         redirect_to posts_path
     end
+
     private 
     def post_params
         params.require(:post).permit(:title, :body)
