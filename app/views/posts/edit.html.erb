@@ -9,6 +9,13 @@
     <p>
         Title <br>
         <%= f.text_field(:title, {:class => 'form-control'}) %>
+    </p>  
+    <p>
+        Image <br>
+        <% if @post.image.attached? %>
+            <%= image_tag @post.image,class: 'card-img-top', style: "width: 100%; display: block"%>
+        <% end %>
+        <%= f.file_field :image, class: "btn btn-primary w-100" %>
     </p>
     <p>
         Body <br>

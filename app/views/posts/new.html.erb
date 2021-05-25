@@ -10,6 +10,10 @@
         Title <br>
         <%= f.text_field(:title, class: 'form-control') %>
     </p>
+        Image <br>
+    <p>
+        <%= f.file_field :image, class: "btn btn-primary w-100" %>
+    </p>
     <p>
         Body <br>
         <%= f.text_area(:body, class: 'form-control') %>
