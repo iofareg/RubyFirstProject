@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
     before_action :authenticate_user!, only: %i[ new create edit update destroy ]
     def index
-        @posts = Post.all
+        @posts = Post.ordered.with_authors
     end
     def new
         @post = Post.new

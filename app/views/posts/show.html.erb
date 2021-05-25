@@ -1,26 +1,46 @@
-<h2><%= @post.title %></h2>
-<p><%= @post.body %></p>
-<hr>
-<h2>Comments</h2>
-<% @post.comments.each do |comment| %>
-    <div>
-        <p><strong><%= comment.author.username %></strong>: <%= comment.body %>
-        <%= link_to 'x', [comment.post, comment],
-              method: :delete
-              #data: { confirm: "Delete this comment?" } 
-              %>
-        </p>
+<div class="card">
+    <div class="card-header d-flex flex-column flex-md-row align-items-center">
+        <span class="mr-md-auto"><strong><%=@post.author.username%></strong> | <%= @post.title%></span>
+        <span class="text-muted my-md-0">
+            Created <%= @post.created_at.strftime("%Y-%m-%d  %H:%M:%S")%>
+        </span>
     </div>
-<% end %>
-<hr>
-<%= form_for([@post,@post.comments.build]) do |f| %>
-    <p>
-        <%= f.text_area :body, class: 'form-control', placeholder: 'Your Comment' %>
-    </p>
-    <p>
-        <%= f.submit "Add comment", class: 'btn btn-primary'%>
-    </p>
-<% end %>
-<hr>
-<%= link_to 'Edit', edit_post_path(@post), :class => 'btn btn-warning'%>
-<%= link_to 'Delete', post_path(@post), method: :delete, data: {confirm: "Delete this post?"}, :class => 'btn btn-danger'%>
+    <div class="card-body">
+        <p class="card-text"><%= @post.body%></p>
+        <hr>
+        <h6>Comments:</h6>
+        <% @post.comments.each do |comment| %>
+            <div>
+                <p><strong><%= comment.author.username %></strong>: <%= comment.body %>
+                <%= link_to 'x', [comment.post, comment],
+                    method: :delete
+                    #data: { confirm: "Delete this comment?" } 
+                    %>
+                </p>
+            </div>
+        <% end %>
+        <hr>
+        <%= form_for([@post,@post.comments.build]) do |f| %>
+        <div class="form-row">
+            <div class="col-md-9 m-2">
+                <%= f.text_field :body, class: 'form-control', placeholder: 'Your Comment' %>
+            </div>
+            <div class="col m-2">
+                <%= f.submit "send", class: 'btn btn-primary'%>
+            </div>
+        </div>  
+        <% end %>
+    </div>
+    <div class="card-footer ">
+        <nav class="ml-2 mr-md-auto"> 
+            <span class="p-2 text-dark text-decoration-none">
+                <%= link_to 'Edit', edit_post_path(@post), :class => 'btn btn-warning btn-sm'%>
+            </span>
+            <span class="p-2 text-dark text-decoration-none">
+                <%= link_to 'Delete', post_path(@post), method: :delete, data: {confirm: "Delete this post?"}, :class => 'btn btn-danger btn-sm'%>
+            </span>
+        </nav>
+        <div class="text-muted mr-auto"> </div>
+    </div>
+</div>  
+

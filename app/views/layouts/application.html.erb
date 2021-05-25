@@ -10,12 +10,11 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-
   <body>
     <div class="d-flex flex-column flex-md-row align-items-center bg-white border-bottom shadow-sm p-2">
       <nav class="ml-2 mr-md-auto">
         <% if user_signed_in? %>
-          <span class="p-2 text-dark text-decoration-none"><%= current_user.email %></span>
+          <span class="p-2 text-dark text-decoration-none"><%= current_user.username %></span>
           <span class="p-2 text-dark text-decoration-none">
             <%= link_to 'Log out', destroy_user_session_path, method: :delete %>
           </span>
