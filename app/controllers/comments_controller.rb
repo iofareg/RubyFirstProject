@@ -13,11 +13,16 @@ class CommentsController < ApplicationController
     def destroy
         @post = Post.find(params[:post_id])
         @comment = @post.comments.find(params[:id])
-        @comment.destroy
+        if @comment.post.author == current_user || @comment.author == current_user
+            @comment.destroy
+            session[:return_to] ||= request.referer
+            redirect_to session.delete(:return_to), notice: 'Comment deleted'
+        else
         # I found the solution to redirect to previous page here
         # https://stackoverflow.com/questions/2139996/how-to-redirect-to-previous-page-in-ruby-on-rails
-        session[:return_to] ||= request.referer
-        redirect_to session.delete(:return_to)
+            session[:return_to] ||= request.referer
+            redirect_to session.delete(:return_to), alert: 'Access denied'
+        end
     end
     private def comment_params
         params.require(:comment).permit(:body)

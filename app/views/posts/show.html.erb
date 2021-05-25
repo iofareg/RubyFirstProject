@@ -31,16 +31,19 @@
         </div>  
         <% end %>
     </div>
-    <div class="card-footer ">
-        <nav class="ml-2 mr-md-auto"> 
-            <span class="p-2 text-dark text-decoration-none">
-                <%= link_to 'Edit', edit_post_path(@post), :class => 'btn btn-warning btn-sm'%>
-            </span>
-            <span class="p-2 text-dark text-decoration-none">
-                <%= link_to 'Delete', post_path(@post), method: :delete, data: {confirm: "Delete this post?"}, :class => 'btn btn-danger btn-sm'%>
-            </span>
-        </nav>
-        <div class="text-muted mr-auto"> </div>
+    <div class="card-footer">
+            <nav class="ml-2 mr-md-auto"> 
+                <% if policy(@post).update? %>
+                <span class="p-2 text-dark text-decoration-none">
+                    <%= link_to 'Edit', edit_post_path(@post), :class => 'btn btn-warning btn-sm'%>
+                </span>
+                <% end %>
+                <% if policy(@post).destroy? %>
+                <span class="p-2 text-dark text-decoration-none">
+                    <%= link_to 'Delete', post_path(@post), method: :delete, data: {confirm: "Delete this post?"}, :class => 'btn btn-danger btn-sm'%>
+                </span>
+                <% end %>
+            </nav>
     </div>
 </div>  
 
