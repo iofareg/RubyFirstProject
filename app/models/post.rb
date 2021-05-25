@@ -7,4 +7,9 @@ class Post < ApplicationRecord
         order(created_at: direction)
     }
     scope :with_authors, -> {includes(:author)}
+
+    scope :search, ->(query) do 
+        return if query.blank?
+        where('title LIKE ?', "%#{query.squish}%")
+    end
 end

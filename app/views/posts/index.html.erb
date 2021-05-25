@@ -1,3 +1,15 @@
+<div>
+    <%= form_with method: :get do |form| %>
+    <div class="d-flex align-items-center">
+        <div class="m-1">
+            <%= form.text_field :query, value: params[:query], class: 'form-control mw-100', placeholder: 'Search for:'%>
+        </div> 
+        <div class="m-1">
+            <%= form.submit "Search", class: 'btn btn-success' %>
+        </div>
+    <% end %>
+</div>
+
 <% @posts.each do |post| %>
 <div class="card">
     <div class="card-header d-flex flex-column flex-md-row align-items-center">

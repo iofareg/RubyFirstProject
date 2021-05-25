@@ -12,7 +12,7 @@ class PostPolicy < ApplicationPolicy
     end
 
     def destroy?
-        author?
+        author? || admin?
     end
 
     def create?
