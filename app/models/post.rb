@@ -8,6 +8,8 @@ class Post < ApplicationRecord
     }
     scope :with_authors, -> {includes(:author)}
 
+    paginates_per 4
+
     scope :search, ->(query) do 
         return if query.blank?
         where('title LIKE ?', "%#{query.squish}%")

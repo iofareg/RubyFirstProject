@@ -60,3 +60,5 @@ gem 'twitter-bootstrap-rails'
 gem 'devise-bootstrap-views'
 
 gem 'pundit'
+
+gem 'kaminari'
